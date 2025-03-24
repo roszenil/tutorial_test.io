@@ -1,0 +1,103 @@
+---
+---
+@use 'colors';
+@use 'home';
+@use 'code';
+@use 'blockquote';
+@use 'tutorial';
+@use 'tutorial-index';
+@use 'figure';
+@use 'keywords';
+@use 'bibliography';
+@use 'help';
+
+body {
+  display:none;
+  font-family: HelveticaNeue,"Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-size: 16px;
+  counter-reset: figures;
+  counter-reset: tables;
+  padding-top: 70px;
+}
+
+html {
+  overflow:   scroll;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+//----------------------------------------
+// Globals
+//----------------------------------------
+
+.footertext {
+  text-align: center;
+}
+
+img.navbar-logo {
+  height: 40px; // synchronize with height of navbar
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 40px;
+}
+
+ul,
+ol {
+  padding-left: 1em;
+}
+
+//----------------------------------------
+// Override Bootstrap settings.
+//----------------------------------------
+
+blockquote div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+code {
+  padding: 0 0;
+  color: inherit;
+  background-color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.navbar .navbar-collapse {
+  height: 50px;
+  text-align: right;
+}
+
+
+.navbar-nav {
+  display: flex;
+}
+
+.navbar-nav > li:last-child {
+  margin-left: auto;
+  flex: 1;
+}
+
+.navbar-nav > li:last-child > * {
+  width: 100%;
+}
+
+.header-search-form {
+  margin: 8px 0px;
+}
+
+.pull-left {
+  float: left;
+  margin-left: 10px;
+}
+
+.navbar-toggle {
+  float: right;
+}

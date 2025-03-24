@@ -1,0 +1,72 @@
+#------------------------------------------------------------
+# Values for this lesson.
+#------------------------------------------------------------
+
+# Overall title for pages.
+title: "RevBayes"
+
+#------------------------------------------------------------
+# Generic settings (should not need to change).
+#------------------------------------------------------------
+
+# Sites.
+revbayes_site: "https://revbayes.github.io"
+
+url: https://revbayes.github.io
+baseurl: ""
+helpdir: "documentation"
+version: v1.2.5
+
+plugins: ['jekyll/scholar']
+
+include: [.nojekyll]
+exclude:
+- deploy.sh
+- README.md
+- Gemfile
+- Gemfile.lock
+- node_modules
+- vendor/bundle/
+- vendor/cache/
+- vendor/gems/
+- vendor/ruby/
+
+empty_array: []
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      code_layout: default
+  - scope:
+      path: "tutorials"
+    values:
+      layout: tutorial
+      code_layout: Rev
+  - scope:
+      path: "developer"
+    values:
+      layout: developer
+
+scholar:
+  bibliography_template: bib
+  style: systematic-biology
+  sort_by: author
+  order: ascending
+
+# Conversion
+kramdown:
+  syntax_highlighter: rouge
+
+sass:
+  sass_dir: assets/_scss
+
+
+# Google Analytics
+google_analytics: UA-10531127-5 # replace with your GA tracking identifier
+
+analytics:
+    provider: "google-gtag"
+    measurement_id: G-0Y03X9Q2TJ
+    anonymize_ip: # true, false (default)

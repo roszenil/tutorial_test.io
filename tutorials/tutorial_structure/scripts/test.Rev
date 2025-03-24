@@ -1,0 +1,10 @@
+
+variable <- "Hi there! Welcome to RevBayes! I am now going to read in some test data."
+variable
+
+molecular_data <- readDiscreteCharacterData("data/example_file.nex")
+molecular_data
+
+print("Congrats on successfully setting up RevBayes")
+
+q()
