@@ -6,6 +6,8 @@ This is the repository for the RevBayes website.
 Setting up this repo locally
 =================
 
+Hi I'm Nico
+
 The static version of this site is stored on branch `master`, while the source files are stored on branch `source`.
 
 First, you should clone the `source` branch
