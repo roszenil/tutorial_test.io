@@ -7,6 +7,7 @@ Setting up this repo locally
 =================
 
 Hi I'm Nico
+Hi I'm Vane
 
 The static version of this site is stored on branch `master`, while the source files are stored on branch `source`.
 
