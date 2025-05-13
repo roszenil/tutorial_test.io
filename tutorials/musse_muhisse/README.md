@@ -24,7 +24,7 @@ The purpose of this tutorial is to give a detailed description of how to use Mul
 MuSSE can accomodate three or more states in which to test hypotheses about state-dependent diversification. MuHiSSE is a model extension of the MuSSE model by its addition of a hidden state. These models incorporate more than two states; we show four states below. Each state has its own speciation (λ, lambda) and extinction (μ, mu) parameters as well as anagenetic transitions between states (q parameters). MuHiSSE additionally has parameters that govern the transitions between the A and B states (alpha and beta). It is important to mention here that, similar to Binary Speciation and Extinction (BiSSE) and  Hidden State Speciation and Extinction (HiSSE), these models only allow for a trait change to occur along a branch (anagenetic trait evolution, denoted by the q transition parameters) rather than at a speciation event (cladogenetic trait evolution). If this is something you would like to implement in your own work, see the Cladogenetic Speciation and Exinction (ClaSSE, Goldberg and Igic 2012).
 
 {% figure example %}
-<img src="figures/02_MuSSE-MuHiSSE.pdf" width="600">
+<img src="figures/02_MuSSE-MuHiSSE.png" width="600">
 {% figcaption %}
 Differences in the number of states and parameters between MuSSE and MuHiSSE models. Each state has a speciation (λ, lambda), extinction (μ, mu), anagenetic transitions between states (q) and hidden states (alpha and beta) rates. 
 {% endfigcaption %}
@@ -57,7 +57,7 @@ They had two hypotheses about what contributed to higher diversification:
 The authors fitted BiSSE, HiSSE, ClaSSE, and MuSSE in the R packages hisse and diversitree, both likelihood methods, and determined the best model with the Akaike Information Criterion (AIC; See the likelihood workflow below). When considering elevation and precipitation independently (BiSSE, HiSSE, and ClaSSE), Bouchenak-Khelladi and Linder (2017) found no relationship with net diversification for either trait. When they combined the traits in a 4-state MuSSE model, the best-fit model was the one that had the same speciation but different extinction rates. Overall, Bouchenak-Khelladi and Linder (2017) concluded that no habitat category had higher net diversification rates, thus not supporting their original hypotheses.
 
 {% figure example %}
-<img src="figures/likelihood-bayesian-comparison.pdf" width="600">
+<img src="figures/likelihood-bayesian-comparison.png" width="600">
 {% figcaption %}
 This is a simplified workflow for implementing Likelihood vs. Bayesian SSE model 
 {% endfigcaption %}
