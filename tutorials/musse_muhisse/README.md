@@ -25,7 +25,7 @@ MuSSE can accomodate three or more states in which to test hypotheses about stat
 
 {% figure example %}
 ![02_MuSSE-MuHiSSE](https://github.com/user-attachments/assets/d79a9bc9-da71-410a-8399-569ed8faa65f)
-#<img src="figures/02_MuSSE-MuHiSSE.png" width="600">
+<# img src="figures/02_MuSSE-MuHiSSE.png" width="600">
 {% figcaption %}
 Differences in the number of states and parameters between MuSSE and MuHiSSE models. Each state has a speciation (λ, lambda), extinction (μ, mu), anagenetic transitions between states (q) and hidden states (alpha and beta) rates. 
 {% endfigcaption %}
@@ -59,7 +59,7 @@ The authors fitted BiSSE, HiSSE, ClaSSE, and MuSSE in the R packages hisse and d
 
 {% figure example %}
 ![likelihood-bayesian-comparison](https://github.com/user-attachments/assets/b540078f-11bb-4347-aea2-5ff43fe84827)
-#<img src="figures/likelihood-bayesian-comparison.png" width="600">
+<# img src="figures/likelihood-bayesian-comparison.png" width="600">
 {% figcaption %}
 This is a simplified workflow for implementing Likelihood vs. Bayesian SSE model 
 {% endfigcaption %}
