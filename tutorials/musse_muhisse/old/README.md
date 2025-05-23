@@ -24,9 +24,8 @@ The purpose of this tutorial is to give a detailed description of how to use Mul
 MuSSE can accomodate three or more states in which to test hypotheses about state-dependent diversification. MuHiSSE is a model extension of the MuSSE model by its addition of a hidden state. These models incorporate more than two states; we show four states below. Each state has its own speciation (λ, lambda) and extinction (μ, mu) parameters as well as anagenetic transitions between states (q parameters). MuHiSSE additionally has parameters that govern the transitions between the A and B states (alpha and beta). It is important to mention here that, similar to Binary Speciation and Extinction (BiSSE) and  Hidden State Speciation and Extinction (HiSSE), these models only allow for a trait change to occur along a branch (anagenetic trait evolution, denoted by the q transition parameters) rather than at a speciation event (cladogenetic trait evolution). If this is something you would like to implement in your own work, see the Cladogenetic Speciation and Exinction (ClaSSE, Goldberg and Igic 2012).
 
 {% figure example %}
-
 ![02_MuSSE-MuHiSSE](https://github.com/user-attachments/assets/d79a9bc9-da71-410a-8399-569ed8faa65f)
-<# img src="figures/02_MuSSE-MuHiSSE.pdf" width="600">
+<# img src="figures/02_MuSSE-MuHiSSE.png" width="600">
 {% figcaption %}
 Differences in the number of states and parameters between MuSSE and MuHiSSE models. Each state has a speciation (λ, lambda), extinction (μ, mu), anagenetic transitions between states (q) and hidden states (alpha and beta) rates. 
 {% endfigcaption %}
@@ -60,24 +59,24 @@ The authors fitted BiSSE, HiSSE, ClaSSE, and MuSSE in the R packages hisse and d
 
 {% figure example %}
 ![likelihood-bayesian-comparison](https://github.com/user-attachments/assets/b540078f-11bb-4347-aea2-5ff43fe84827)
-<# img src="figures/likelihood-bayesian-comparison.pdf" width="600">
+<# img src="figures/likelihood-bayesian-comparison.png" width="600">
 {% figcaption %}
-This is a simplified workflow for implementing Likelihood vs. Bayesian diversification models. On the left, the likelihood approach requires analyzing multiple models with different assumptions (i.e., the difference in the models A–D) then performing model selection to determine the best fit model. From the best fit model, we can interpret point estimates for rate parameters. On the right, only one model is analyzed and we interpret the posterior estimates of the parameters with which we can test our diversification hypotheses.   
+This is a simplified workflow for implementing Likelihood vs. Bayesian SSE model 
 {% endfigcaption %}
 {% endfigure %}
 
 NOTE TO ROSANA ET AL.: Is this figure worth including here? I thought it would be good to again reiterate how the workflow of Bayesian SSEs is different than Likelihood. I'm not going to edit the Bayesian workflow side to match the number of states for the MuHiSSE model yet in case people do not think it is necessary. 
 
-In a likelihood Instead of running a MuHiSSE model in which we set expectation for rates (i.e., the difference in the models A–D in the workflow figure above), we will analyze one model, a MuHiSSE allowing with free rates. We will then in
+Instead of running a MuHiSSE model in which we set expectation for rates (i.e., the difference in the models A–D in the workflow figure above), we will analyze one model, a MuHiSSE allowing with free rates. We will then in
 
-{% subsection Data preparation and setup %}
+{% subsection Data preparation %}
 
-Begin by creating a project _directory_ (also referred to as a folder) on your computer, titled `musse` with two subdirectories inside, one called _data_ and the other called _scripts_. See the box called `Data files and scripts` in the upper left-hand corner of this webpage and download the files. There are two necessary data files that MuHiSSE requires, a tree file (`MCC_AFRICANRESTIOS.tre`) and a data file (`combined_traitdatabase_0123.tsv`). Put these into your `data` directory. There are two scripts that are clean versions of the Rev and R code that we will be going through: `test.Rev` and `test.Rmd`. Put these into your `scripts` directory.
+Begin by creating a project _directory_ (also referred to as a folder) on your computer, titled `musse` with two subdirectories inside, one called _data_ and the other called _scripts_. See the box called `Data files and scripts` in the upper left-hand corner of this webpage and download the files. Put `combined_traitdatabase_0123.tsv` and `MCC_AFRICANRESTIOS.tre` into your `data` directory and `test.Rev` and `test.Rmd` into your `scripts` directory.
 
 {% subsection Setup %}
 This tutorial uses RevBayes v1.2.5. Earlier versions may not run properly. 
 
-
+The two necessary data files that MuHiSSE 
 
 
 
