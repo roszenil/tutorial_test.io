@@ -24,9 +24,14 @@ The purpose of this tutorial is to give a detailed description of how to use Mul
 MuSSE can accomodate three or more states in which to test hypotheses about state-dependent diversification. MuHiSSE is a model extension of the MuSSE model by its addition of a hidden state. These models incorporate more than two states; we show four states below. Each state has its own speciation (λ, lambda) and extinction (μ, mu) parameters as well as anagenetic transitions between states (q parameters). MuHiSSE additionally has parameters that govern the transitions between the A and B states (alpha and beta). It is important to mention here that, similar to Binary Speciation and Extinction (BiSSE) and  Hidden State Speciation and Extinction (HiSSE), these models only allow for a trait change to occur along a branch (anagenetic trait evolution, denoted by the q transition parameters) rather than at a speciation event (cladogenetic trait evolution). If this is something you would like to implement in your own work, see the Cladogenetic Speciation and Exinction (ClaSSE, Goldberg and Igic 2012).
 
 {% figure example %}
+<<<<<<< HEAD
 
 ![02_MuSSE-MuHiSSE](https://github.com/user-attachments/assets/d79a9bc9-da71-410a-8399-569ed8faa65f)
 <# img src="figures/02_MuSSE-MuHiSSE.pdf" width="600">
+=======
+![02_MuSSE-MuHiSSE](https://github.com/user-attachments/assets/d79a9bc9-da71-410a-8399-569ed8faa65f)
+<# img src="figures/02_MuSSE-MuHiSSE.png" width="600">
+>>>>>>> bd08b16cfe568691562e174a19c8ddd5ef980ac5
 {% figcaption %}
 Differences in the number of states and parameters between MuSSE and MuHiSSE models. Each state has a speciation (λ, lambda), extinction (μ, mu), anagenetic transitions between states (q) and hidden states (alpha and beta) rates. 
 {% endfigcaption %}
@@ -60,7 +65,11 @@ The authors fitted BiSSE, HiSSE, ClaSSE, and MuSSE in the R packages hisse and d
 
 {% figure example %}
 ![likelihood-bayesian-comparison](https://github.com/user-attachments/assets/b540078f-11bb-4347-aea2-5ff43fe84827)
+<<<<<<< HEAD
 <# img src="figures/likelihood-bayesian-comparison.pdf" width="600">
+=======
+<# img src="figures/likelihood-bayesian-comparison.png" width="600">
+>>>>>>> bd08b16cfe568691562e174a19c8ddd5ef980ac5
 {% figcaption %}
 This is a simplified workflow for implementing Likelihood vs. Bayesian diversification models. On the left, the likelihood approach requires analyzing multiple models with different assumptions (i.e., the difference in the models A–D) then performing model selection to determine the best fit model. From the best fit model, we can interpret point estimates for rate parameters. On the right, only one model is analyzed and we interpret the posterior estimates of the parameters with which we can test our diversification hypotheses.   
 {% endfigcaption %}
