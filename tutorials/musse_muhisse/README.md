@@ -31,12 +31,13 @@ To answer the question whether a trait of interest has an effect on diversificat
 
 Another way of describing hidden state models is "complexity that we add" in order to see if our data still supports a hypothesis of state dependent diversification. 
 
-## The models 
+## The Models 
 <!-- {% subsection MuSSE and MuHiSSE %}--->
 
 MuSSE departs from the BiSSE model by allowing for three or more states in which to test hypotheses about state-dependent diversification. MuHiSSE is the model extension of the MuSSE model by its addition of a hidden state. These models incorporate more than two states; we show four states below. These states can represent different kinds of traits, whether it be phenotypic, geographic, or otherwise. Examples could be three different colors of petals (red, blue, purple) or a combination of two binary traits together. 
 
-![02_MuSSE-MuHiSSE](https://github.com/user-attachments/assets/d79a9bc9-da71-410a-8399-569ed8faa65f)
+![02_MuSSE-MuHiSSE](https://github.com/user-attachments/assets/7585aa26-ffde-43e6-86a6-28f34b448f79)
+
 
 <!---{% figure example %}
 <img src="figures/02_MuSSE-MuHiSSE.png" width="600">
@@ -47,18 +48,9 @@ Figure 1. Differences in the number of states and parameters between MuSSE and M
 
 In both models, each state has its own speciation (λ, lambda) and extinction (μ, mu) parameters as well as anagenetic transitions between states (q) that occur between speciation events. MuHiSSE additionally has parameters that govern the transitions between the A and B states (alpha and beta). It is important to mention here that, similar to BiSSE and  Hidden State Speciation and Extinction (HiSSE), these models only allow for a trait change to occur along a branch (anagenetic trait evolution, denoted by the q transition parameters) rather than at a speciation event (cladogenetic trait evolution). If this is something you would like to implement in your own work, see the Cladogenetic Speciation and Exinction (ClaSSE, Goldberg and Igic 2012).
 
-![anagenetic-v-cladogenetic](https://github.com/user-attachments/assets/b15b3d9e-7ea0-47d2-9396-0f5587763bdb)
-
-<!---{% figure example %}
-<img src="figures/anagenetic-v-cladogenetic.png" width="600">
-{% figcaption %}--->
-Figure 2. One of the assumptions of both MuSSE and MuHiSSE models is that state changes are anagenetic: meaning that state transitions do not occur at a speciation event but along a branch without a speciation event. The Cladogenetic State-depdendent Speciation and Extinction model (ClaSSE) allows for states to occur at a cladogenetic event. 
-<!---{% endfigcaption %}
-{% endfigure %}--->
-
 In RevBayes, it is simple to control the q transition matrix if your own empirical system required it. For example, if it was biologically unrealistic for an anagenetic transition to occur from state 0 to state 2, it would be possible to set the transition matrix to only allow transitions into state two from either state 1 or 3. This is discussed more below.
 
-In this tutorial, we will not be going through the step by step guide for MuSSE because taking the time to perform their more complex, hidden state extensions in a Bayesian framework inherently includes their more simpler versions. In other words, we can interpret results from only the A states (0A, 1A, 2A, and 3A) from the MuHiSSE if we wanted to know the results of a non-hidden state model. But by running the more complex model in RevBayes, we have the information for both and the confidence that our results will be less likely to be hampered by false positive inferences. But the code to do a  MuSSE nonetheless will be available in `musse.rev`. Overall, its code is not significantly different but there are more parameters because there are twice as many states (Figure 1.)
+In this tutorial, we will not be going through the step by step guide for MuSSE because taking the time to perform their more complex, hidden state extensions in a Bayesian framework inherently includes their more simpler versions. In other words, we can interpret results from only the A states (0A, 1A, 2A, and 3A) from the MuHiSSE if we wanted to know the results of a non-hidden state model. But by running the more complex model in RevBayes, we have the information for both and the confidence that our results will be less likely to be hampered by false positive inferences. But the code to do a  MuSSE nonetheless will be available in `musse.rev`. Overall, its code is not significantly different but there are more parameters because there are twice as many states (Figure 1). 
 
 ## Tensorphylo
 <!---{% subsection Tensorphylo %}--->
@@ -91,9 +83,8 @@ This is a simplified workflow for implementing Likelihood vs. Bayesian SSE model
 {% endfigcaption %}
 {% endfigure %}---> 
 
-NOTE TO ROSANA ET AL.: Is this figure worth including here? I thought it would be good to again reiterate how the workflow of Bayesian SSEs is different than Likelihood. I'm not going to edit the Bayesian workflow side to match the number of states for the MuHiSSE model yet in case people do not think it is necessary. 
 
-Instead of running a MuHiSSE model in which we set expectation for rates (i.e., the difference in the models A–D in the workflow figure above), we will analyze one model, a MuHiSSE allowing with free rates. We will then in
+Instead of running a MuHiSSE model in which we set expectation for rates (i.e., the difference in the models A–D in the workflow figure above), we will analyze one model, a MuHiSSE allowing with free rates. 
 
 ## Data preparation
 <!---{% subsection Setup %}--->
@@ -316,7 +307,7 @@ With all of our rates created and defined into their respective matrices, we can
 rate_matrix := fnHiddenStateRateMatrix(q, R, rescaled=false)
 ```
 
-### setting up the root state frequencies and finalizing the model 
+### Setting up the root state frequencies and finalizing the model 
 To set the root state frequencies, we are going to create a constant variable with the prior probabilities of each rate category at the root of the phylogeny with a Dirichlet distribution. 
 ```
 rate_category_prior ~ dnDirichlet( rep(1,NUM_RATES) )
@@ -327,85 +318,80 @@ Next we will set the moves for this, which requires a special move because they 
 moves[++mvi] = mvBetaSimplex(rate_category_prior,tune=true,weight=2)
 moves[++mvi] = mvDirichletSimplex(rate_category_prior,tune=true,weight=2)
 ```
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+From our tree file, we need to extract the root age, also known as the tree height.   
+```
+root <- observed_phylogeny.rootAge()
+```
+Lastly, we need to state the sampling fraction of our phylogeny. The phylogenetic tree is 98% completely sampled, making the probability of sampling species at the present be: 
+```
+rho <- 0.98
+```
+Now that we have all of our rates set, we can create a stochastic variable that describes state-dependent birth, death, and speciation processes. The _dnCDBDP_ distribution, which is named for a character-dependent birth-death process (also known as a state-dependent speciation and extinction process), sets the interacting processes that generate a tree with a topology, divergence dates, and the trait states at the tips. Though we have  specifically created several some of these variables (i.e., speciation, extinction, rate_matrix, rate_category_prior) or are aspects of our empirical phylogeny (i.e., root, rho), there are some that we need to define in order to compute the model likelihood. The _condition_ arugment instructs the model what the units of time are for our rootAge setting. 
+```
+muhisse ~ dnCDBDP(
+rootAge           = root,
+speciationRates   = speciation,
+extinctionRates   = extinction,
+Q                 = rate_matrix,
+pi                = rate_category_prior,
+rho               = rho,
+delta             = 1.0,
+condition         = "time" )
+
+```
+
+Because MuHiSSE jointly models the tree and trait evolution, we need to clamp our newly created stochastic variable with the fixed topology and modern trait states. In doing so, it will allow us to infer the model parameters using our empirical data. 
+```
+muhisse.clamp( observed_phylogeny )
+muhisse.clampCharData( data_exp )
+```
+### Setting up the MCMC and running the analysis
+Next we make a model wrapper by selecting one of the parameters. Because `rate_matrix` is clamped with all other model parameters, selecting it to initialize the model will pull all other parameters that are directly or indirectly connected to `rate_matrix` will include them into the model as well. 
+```
+mymodel = model(rate_matrix)
+```
+Now we will set up the monitors. We want the MCMC to track different parameters while it runs. First, we want to save model parameters to a file using `mnModel` and set frequency of writing output to a log file (_printgen_). We also want to print some output to the screen so we can quickly know what generation the analysis is on using `mnScreen`. We are saving our output files in a directory called `output`. 
+
+```
+monitors = VectorMonitors()
+monitors.append(mnModel(filename="output/muhisse.log", printgen=10)) #this is the number of generations that you will record. 
+monitors.append(mnScreen(printgen=10, q, R, speciation, extinction)) 
+```
+If you want to do ancestral state reconstruction, we also want to save states (`mnJointConditionalAncestralState`) and stocastic character mappings (`mnStochasticCharacterMap`). However, when adapting this tutorial for your own purposes, you might not be interested in ancestral state reconstruction and not including it in your analysis would save computational time. 
+```
+monitors.append(mnJointConditionalAncestralState(tree=muhisse, cdbdp=muhisse, type="NaturalNumbers", printgen=1, withTips=true, withStartStates=false, filename="output/anc_states_muhisse.log"))
+monitors.append( mnStochasticCharacterMap(cdbdp=muhisse,printgen=1,filename="output/stochmap_muhisse.log", include_simmap=true))
+```
+
+Set your MCMC and specify the number of chains you would like to simultaneously run. Here, _nruns_ is set to two chains so we can check for convergence. 
+```
+mymcmc = mcmc(mymodel, monitors, moves, nruns=2, moveschedule="random")
+```
+You can set your pre-burnin to tune the proposals prior to the analysis starting. Alternatively, these could be dropped after the analysis is complete. 
+```
+mymcmc.burnin(generations=15000,tuningInterval=100)
+```
+Finally, you can run the analysis. There are multiple ways to do this. If you don't want checkpointing to occur, start it like this:  
+```
+mymcmc.run(generations=150000)
+```
+If you DO want checkpointing to occur, use this code _instead_ of the line above. 
+```
+# When the analysis needs to be restarted from a checkpoint file, uncomment this line below. It is important that this line preceeds mcmc.run.  
+#mymcmc.initializeFromCheckpoint("output/muhisse.checkpoint_run_1.txt") #comment out for first run. This will be dependent on whether you are restarting the first (run_1) or second (run_2) chain. 
+mymcmc.run(generations=150000, checkpointFile="output/muhisse.checkpoint.txt", checkpointInterval=100)
+```
+
+### Summarize the ancestral states
+
+```
+anc_states = readAncestralStateTrace("output/anc_states_muhisse_run_1.log")
+
+anc_tree = ancestralStateTree(tree=observed_phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="output/anc_states_summary_muhisse_run_1.tree", burnin=15000, summary_statistic="MAP", reconstruction="marginal")
+
+anc_state_trace = readAncestralStateTrace("output/stochmap_muhisse_run_1.log")
+characterMapTree(observed_phylogeny, anc_state_trace, character_file="output/stochmap_muhisse_run_1.tree", posterior_file="output/posterior_muhisse.tree", burnin=50, reconstruction="marginal")
+
+q()
+``` 
 
