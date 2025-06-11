@@ -74,6 +74,9 @@ They had two hypotheses about what contributed to higher diversification:
 
 The authors fitted BiSSE, HiSSE, ClaSSE, and MuSSE in the R packages hisse and diversitree, both likelihood methods, and determined the best model with the Akaike Information Criterion (AIC; See the likelihood workflow below). When considering elevation and precipitation independently (BiSSE, HiSSE, and ClaSSE), Bouchenak-Khelladi and Linder (2017) found no relationship with net diversification for either trait. When they combined the traits in a 4-state MuSSE model, the best-fit model was the one that had the same speciation but different extinction rates. Overall, Bouchenak-Khelladi and Linder (2017) concluded that no habitat category had higher net diversification rates, thus not supporting their original hypotheses.
 
+However, as discussed in Zenil-Ferguson et al. (XXXX), there are benefits for hypothesis testing in a Bayesian framework. When we have more information about the uncertainty of our parameter estimates, we can gain greater insights into the complex biological processes happening in this system. Instead of testing multiple models, we are setting one model, comparing with the empirical data, and are going to create test statistics to determine if the data shows whether there is state-dependent diversification within this system. 
+
+
 
 ![likelihood-bayesian-comparison](https://github.com/user-attachments/assets/b540078f-11bb-4347-aea2-5ff43fe84827)
 <!---{% figure example %}
